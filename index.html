@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Coefficient Calculator</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.js"></script>
+</head>
+<body>
+    <div x-data="setup()" style="display: flex; row-gap: 2rem; flex-direction: column; padding: 20px;">
+        <div>
+            <label>
+                Скільки чисел ви матимите?
+                <input type="number" x-model.number="numberQuantity" @input="updateNumbers()">
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Сума чисел помножених на коефіцієнти дорівнює:
+                <input type="number" x-model.number="sum">
+            </label>
+        </div>
+
+        <template x-for="number in numbers" :key="number.id">
+            <div style="border: 1px solid black; padding: 10px; margin-top: 10px;">
+                <label>Число:
+                    <input type="number" x-model.number="number.number">
+                </label>
+                <label>Починати пошук коефіцієнта з:
+                    <input type="number" x-model.number="number.startSearchFrom">
+                </label>
+                <label>Може бути дробовим:
+                    <input type="checkbox" x-model="number.isFloat">
+                </label>
+            </div>
+        </template>
+
+        <button @click="startCalculation()">Порахувати</button>
+        <div x-html="'Result: ' + result"></div>
+    </div>
+
+    <script src="algorithm.js"></script>
+    <script>
+        function setup() {
+            return {
+                numberQuantity: 3,
+                numbers: [],
+                sum: 123,
+                result: '',
+
+                init() {
+                    this.updateNumbers();
+                },
+
+                updateNumbers() {
+                    this.numbers = Array.from({ length: this.numberQuantity }, (_, index) => ({
+                        id: index + 1,
+                        number: 1,
+                        startSearchFrom: 1,
+                        isFloat: false
+                    }));
+                },
+
+                startCalculation() {
+                    const nums = this.numbers.map((numberObj) => numberObj.number);
+                    const floats = this.numbers.map((numberObj) => numberObj.isFloat);
+                    const startFrom = this.numbers.map((numberObj) => numberObj.startSearchFrom);
+                    const result = calculate(nums, floats, startFrom, this.sum);
+
+                    if (!result) {
+                        this.result = "Не знайдено :(";
+                    } else {
+                        this.result = result.map((coefficient) =>`<div>${coefficient}</div>`);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
