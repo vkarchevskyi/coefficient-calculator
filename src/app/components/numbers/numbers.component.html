@@ -1,11 +1,13 @@
 <div class="number-form-wrapper" cdkDropList (cdkDropListDropped)="drop($event)">
   @for (number of numbers; track number.id; let i = $index;) {
   <mat-card appearance="outlined" class="" cdkDrag>
-    <mat-card-content style="display: flex; justify-content: space-between;  gap: 1rem;">
+    <div class="custom-placeholder-area" *cdkDragPlaceholder></div>
+
+    <mat-card-content>
       <button class="drag-handler" cdkDragHandle mat-icon-button>
         <mat-icon color="secondary">drag_indicator</mat-icon>
       </button>
-      <div style="width: 100%;">
+      <div class="number-container">
         <div class="input-row">
           <mat-form-field>
             <mat-label>Число:</mat-label>

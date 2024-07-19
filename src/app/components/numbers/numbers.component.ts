@@ -7,6 +7,7 @@ import {
   CdkDrag,
   CdkDragDrop,
   CdkDragHandle,
+  CdkDragPlaceholder,
   CdkDropList,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
@@ -27,6 +28,7 @@ import { MatIconButton } from '@angular/material/button';
     CdkDrag,
     CdkDragHandle,
     CdkDropList,
+    CdkDragPlaceholder,
     MatInputModule,
     MatCheckbox,
     MatIcon,
