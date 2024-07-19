@@ -12,8 +12,8 @@ export class CalculatorService {
     maxIterations: number,
     precision: number
   ): number[] | null {
-    const limits = numbers.map((number: any) => sum / number);
-    const increments = floats.map((float: any) => (float ? precision : 1));
+    const limits = numbers.map((number: number) => sum / number);
+    const increments = floats.map((float: boolean) => (float ? precision : 1));
 
     let currentValues = starts.slice(); // Copy of starts to mutate
     let iteration = 0;
@@ -47,7 +47,7 @@ export class CalculatorService {
     precision: number
   ): boolean {
     const currentSum = numbers.reduce(
-      (acc: any, coeff: any, index: any) => acc + coeff * currentValues[index],
+      (acc: number, coeff: number, index: number) => acc + coeff * currentValues[index],
       0
     );
     return Math.abs(currentSum - targetSum) < precision;
