@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCheckboxModule,
     MatCardModule,
     MatIconModule,
+    MatExpansionModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -29,8 +31,9 @@ export class AppComponent {
 
   public sum: number;
   public numbers: CalculatedNumber[] = [];
-
-  public result: string = '';
+  public showError: boolean = false;
+  public maxIterations: number = 100000000;
+  public precision: number = 0.001;
 
   public constructor(private calculatorService: CalculatorService) {
     this.sum = 100;
@@ -44,7 +47,8 @@ export class AppComponent {
       id: this.numbers.length + 1,
       value: 1,
       startSearchFrom: 1,
-      isFloat: false
+      isFloat: false,
+      result: null,
     });
   }
 
@@ -65,15 +69,17 @@ export class AppComponent {
       nums,
       floats,
       startFrom,
-      this.sum
+      this.sum,
+      this.maxIterations,
+      this.precision
     );
 
-    if (!result) {
-      this.result = 'Не знайдено :(';
-    } else {
-      this.result = result
-        .map((coefficient: any) => `<div>${coefficient}</div>`)
-        .join('');
+    if (result) {
+      for (let i = 0; i < result.length; i++) {
+        this.numbers[i].result = result[i];
+      }
     }
+
+    this.showError = !Boolean(result);
   }
 }

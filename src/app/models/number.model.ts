@@ -3,4 +3,5 @@ export interface CalculatedNumber {
   value: number;
   startSearchFrom: number;
   isFloat: boolean;
+  result: number | null;
 }

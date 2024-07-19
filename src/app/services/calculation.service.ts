@@ -9,9 +9,9 @@ export class CalculatorService {
     floats: boolean[],
     starts: number[],
     sum: number,
-    maxIterations = 100000000,
-    precision = 0.001,
-  ) {
+    maxIterations: number,
+    precision: number
+  ): number[] | null {
     const limits = numbers.map((number: any) => sum / number);
     const increments = floats.map((float: any) => (float ? precision : 1));
 
@@ -20,7 +20,7 @@ export class CalculatorService {
 
     while (iteration < maxIterations) {
       if (this.isSumFound(numbers, currentValues, sum, precision)) {
-        return currentValues.map((v: any) => this.round(v, 3));
+        return currentValues.map((value: number) => this.round(value, 3));
       }
 
       // Increment the coefficients
@@ -45,7 +45,7 @@ export class CalculatorService {
     currentValues: number[],
     targetSum: number,
     precision: number
-  ) {
+  ): boolean {
     const currentSum = numbers.reduce(
       (acc: any, coeff: any, index: any) => acc + coeff * currentValues[index],
       0
@@ -53,7 +53,7 @@ export class CalculatorService {
     return Math.abs(currentSum - targetSum) < precision;
   }
 
-  private round(value: number, decimals: number) {
+  private round(value: number, decimals: number): number {
     return Number(Math.round(Number(value + 'e' + decimals)) + 'e-' + decimals);
   }
 }
