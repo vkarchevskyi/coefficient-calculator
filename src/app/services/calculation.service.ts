@@ -8,17 +8,18 @@ export class CalculatorService {
     numbers: number[],
     floats: boolean[],
     starts: number[],
-    sum: number
+    sum: number,
+    maxIterations = 100000000,
+    precision = 0.001,
   ) {
     const limits = numbers.map((number: any) => sum / number);
-    const increments = floats.map((float: any) => (float ? 0.001 : 1));
+    const increments = floats.map((float: any) => (float ? precision : 1));
 
     let currentValues = starts.slice(); // Copy of starts to mutate
-    let maxIterations = 100000000; // Set a maximum number of iterations to avoid infinite loops
     let iteration = 0;
 
     while (iteration < maxIterations) {
-      if (this.isSumFound(numbers, currentValues, sum)) {
+      if (this.isSumFound(numbers, currentValues, sum, precision)) {
         return currentValues.map((v: any) => this.round(v, 3));
       }
 
@@ -42,13 +43,14 @@ export class CalculatorService {
   private isSumFound(
     numbers: number[],
     currentValues: number[],
-    targetSum: number
+    targetSum: number,
+    precision: number
   ) {
     const currentSum = numbers.reduce(
       (acc: any, coeff: any, index: any) => acc + coeff * currentValues[index],
       0
     );
-    return Math.abs(currentSum - targetSum) < 0.001;
+    return Math.abs(currentSum - targetSum) < precision;
   }
 
   private round(value: number, decimals: number) {

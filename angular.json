@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "coeff-calc": {
+    "coefficient-calculator": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/coeff-calc",
+            "outputPath": "dist/coefficient-calculator",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "coeff-calc:build:production"
+              "buildTarget": "coefficient-calculator:build:production"
             },
             "development": {
-              "buildTarget": "coeff-calc:build:development"
+              "buildTarget": "coefficient-calculator:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -96,6 +96,12 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "repo": "https://github.com/vkarchevskyi/coefficient-calculator.git"
           }
         }
       }
