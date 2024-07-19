@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CalculatedNumber } from './models/number.model';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
@@ -18,31 +19,39 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatCheckboxModule,
     MatCardModule,
+    MatIconModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
-  public readonly title: string = 'Coefficient calculator';
+export class AppComponent {
+  public readonly initialNumbersQuantity: number = 3;
 
-  numberQuantity: number = 3;
-  numbers: CalculatedNumber[] = [];
-  sum: number = 123;
-  result: string = '';
+  public sum: number;
+  public numbers: CalculatedNumber[] = [];
 
-  public constructor(private calculatorService: CalculatorService) {}
+  public result: string = '';
 
-  ngOnInit() {
-    this.updateNumbers();
+  public constructor(private calculatorService: CalculatorService) {
+    this.sum = 100;
+    for (let i = 0; i < this.initialNumbersQuantity; i++) {
+      this.addNumber();
+    }
   }
 
-  updateNumbers() {
-    this.numbers = Array.from({ length: this.numberQuantity }, (_, index) => ({
-      id: index + 1,
+  addNumber() {
+    this.numbers.push({
+      id: this.numbers.length + 1,
       value: 1,
       startSearchFrom: 1,
-      isFloat: false,
-    }));
+      isFloat: false
+    });
+  }
+
+  removeLastNumber() {
+    if (this.numbers.length > 0) {
+      this.numbers.pop();
+    }
   }
 
   startCalculation() {

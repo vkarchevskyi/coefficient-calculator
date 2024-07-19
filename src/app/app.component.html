@@ -1,13 +1,17 @@
 <div class="container">
   <mat-form-field>
-    <mat-label>Скільки чисел ви матимите?</mat-label>
-    <input matInput type="number" [(ngModel)]="numberQuantity" (input)="updateNumbers()">
-  </mat-form-field>
-
-  <mat-form-field>
     <mat-label>Сума чисел помножених на коефіцієнти дорівнює:</mat-label>
     <input matInput type="number" [(ngModel)]="sum">
   </mat-form-field>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="addNumber()" class="add-button">
+      <mat-icon>add</mat-icon> Додати число
+    </button>
+    <button mat-raised-button color="warn" (click)="removeLastNumber()" class="remove-button">
+      <mat-icon>remove</mat-icon> Видалити останнє число
+    </button>
+  </div>
 
   <div class="number-form-wrapper">
     @for (number of numbers; track number.id) {

@@ -43,3 +43,13 @@
   margin-top: 20px;
   font-size: 16px;
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+
+  button {
+    width: 100%;
+  }
+}
