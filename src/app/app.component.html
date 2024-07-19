@@ -1,0 +1,36 @@
+<div class="container">
+  <mat-form-field>
+    <mat-label>Скільки чисел ви матимите?</mat-label>
+    <input matInput type="number" [(ngModel)]="numberQuantity" (input)="updateNumbers()">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Сума чисел помножених на коефіцієнти дорівнює:</mat-label>
+    <input matInput type="number" [(ngModel)]="sum">
+  </mat-form-field>
+
+  <div class="number-form-wrapper">
+    @for (number of numbers; track number.id) {
+    <mat-card class="">
+      <mat-card-content>
+        <div class="number-inputs">
+          <mat-form-field>
+            <mat-label>Число:</mat-label>
+            <input matInput type="number" [(ngModel)]="number.value">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Починати пошук коефіцієнта з:</mat-label>
+            <input matInput type="number" [(ngModel)]="number.startSearchFrom">
+          </mat-form-field>
+        </div>
+        <mat-checkbox [(ngModel)]="number.isFloat">Може бути дробовим</mat-checkbox>
+      </mat-card-content>
+    </mat-card>
+    }
+  </div>
+
+  <button mat-raised-button color="primary" (click)="startCalculation()">Порахувати</button>
+  <div [innerHTML]="'Result: ' + result" class="result"></div>
+</div>
+
+<router-outlet />
