@@ -1,0 +1,36 @@
+<div class="number-form-wrapper" cdkDropList (cdkDropListDropped)="drop($event)">
+  @for (number of numbers; track number.id; let i = $index;) {
+  <mat-card appearance="outlined" class="" cdkDrag>
+    <mat-card-content style="display: flex; justify-content: space-between;  gap: 1rem;">
+      <button class="drag-handler" cdkDragHandle mat-icon-button>
+        <mat-icon color="secondary">drag_indicator</mat-icon>
+      </button>
+      <div style="width: 100%;">
+        <div class="input-row">
+          <mat-form-field>
+            <mat-label>Число:</mat-label>
+            <input matInput type="number" [(ngModel)]="number.value" name="value">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Починати пошук коефіцієнта з:</mat-label>
+            <input matInput type="number" [(ngModel)]="number.startSearchFrom" name="start-search-from">
+          </mat-form-field>
+        </div>
+        <div class="input-row">
+          <mat-checkbox [(ngModel)]="number.isFloat">
+            Може бути дробовим
+          </mat-checkbox>
+          @if (showError) {
+          <mat-label>Помилка в обраховуванні</mat-label>
+          } @else if (number.result !== null) {
+          <mat-label>Коефіцієнт: <b>{{ number.result }}</b></mat-label>
+          }
+        </div>
+      </div>
+      <button mat-icon-button (click)="deleteNumber(i)">
+        <mat-icon color="warn">close</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>
+  }
+</div>

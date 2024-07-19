@@ -1,0 +1,15 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Системні налаштування</mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="input-row">
+    <mat-form-field>
+      <mat-label>Точність оцінки</mat-label>
+      <input matInput type="number" [(ngModel)]="precision">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Кількість ітерацій циклу</mat-label>
+      <input matInput type="number" [(ngModel)]="maxIterations">
+    </mat-form-field>
+  </div>
+</mat-expansion-panel>

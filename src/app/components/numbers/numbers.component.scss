@@ -1,0 +1,18 @@
+.number-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+mat-card-content {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.drag-handler {
+  align-self: stretch;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}
+

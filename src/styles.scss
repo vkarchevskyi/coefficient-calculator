@@ -1,4 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #EEEEEE;}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #eeeeee;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .input-row {
+    flex-direction: column;
+  }
+}
