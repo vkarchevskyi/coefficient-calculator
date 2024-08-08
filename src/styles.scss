@@ -1,5 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
 
+@use "@angular/material" as mat;
+
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$blue-palette,
+    ),
+    typography: (
+      brand-family: "Comic Sans",
+      bold-weight: 900,
+    ),
+    density: (
+      scale: -1,
+    ),
+  )
+);
+
+$light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$blue-palette,
+    ),
+    typography: (
+      brand-family: "Comic Sans",
+      bold-weight: 900,
+    ),
+    density: (
+      scale: -1,
+    ),
+  )
+);
+
+html {
+  @include mat.all-component-themes($light-theme);
+}
+
+body {
+  color-scheme: light;
+}
+
+body.dark-mode {
+  color-scheme: dark;
+  @include mat.all-component-colors($dark-theme);
+
+  mat-checkbox .mdc-label {
+    color: white !important;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -19,6 +70,7 @@ mat-form-field {
   justify-content: space-between;
   align-items: center;
   column-gap: 1rem;
+  margin-top: 1rem;
 }
 
 @media screen and (max-width: 600px) {

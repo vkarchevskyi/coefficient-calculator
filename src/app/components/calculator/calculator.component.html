@@ -4,14 +4,23 @@
   <div>
     <mat-form-field>
       <mat-label>Сума чисел помножених на коефіцієнти дорівнює:</mat-label>
-      <input matInput type="number" [(ngModel)]="sum" name="sum">
+      <input matInput type="number" [(ngModel)]="sum" name="sum" />
     </mat-form-field>
 
-    <app-numbers [numbers]="numbers" [showError]="showError" (numberDeleted)="removeNumber($event)"></app-numbers>
+    <app-numbers
+      [numbers]="numbers"
+      [showError]="showError"
+      (numberDeleted)="removeNumber($event)"
+    ></app-numbers>
   </div>
 
   <div class="button-container">
-    <button mat-stroked-button color="primary" (click)="addNumber()" class="add-button">
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="addNumber()"
+      class="add-button"
+    >
       <mat-icon>add</mat-icon> Додати число
     </button>
     <button mat-stroked-button color="primary" (click)="startCalculation()">

@@ -1,38 +1,54 @@
-<div class="number-form-wrapper" cdkDropList (cdkDropListDropped)="drop($event)">
-  @for (number of numbers; track number.id; let i = $index;) {
-  <mat-card appearance="outlined" class="" cdkDrag>
-    <div class="custom-placeholder-area" *cdkDragPlaceholder></div>
+<div
+  class="number-form-wrapper"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+>
+  @for (number of numbers; track number.id; let i = $index) {
+    <mat-card appearance="outlined" class="" cdkDrag>
+      <div class="custom-placeholder-area" *cdkDragPlaceholder></div>
 
-    <mat-card-content>
-      <button class="drag-handler" cdkDragHandle mat-icon-button>
-        <mat-icon color="secondary">drag_indicator</mat-icon>
-      </button>
-      <div class="number-container">
-        <div class="input-row">
-          <mat-form-field>
-            <mat-label>Число:</mat-label>
-            <input matInput type="number" [(ngModel)]="number.value" name="value">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Починати пошук коефіцієнта з:</mat-label>
-            <input matInput type="number" [(ngModel)]="number.startSearchFrom" name="start-search-from">
-          </mat-form-field>
+      <mat-card-content>
+        <button class="drag-handler" cdkDragHandle mat-icon-button>
+          <mat-icon color="secondary">drag_indicator</mat-icon>
+        </button>
+        <div class="number-container">
+          <div class="input-row">
+            <mat-form-field>
+              <mat-label>Число:</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="number.value"
+                name="value"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Починати пошук коефіцієнта з:</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="number.startSearchFrom"
+                name="start-search-from"
+              />
+            </mat-form-field>
+          </div>
+          <div class="input-row">
+            <mat-checkbox [(ngModel)]="number.isFloat">
+              Може бути дробовим
+            </mat-checkbox>
+            @if (showError) {
+              <mat-label>Помилка в обраховуванні</mat-label>
+            } @else if (number.result !== null) {
+              <mat-label
+                >Коефіцієнт: <b>{{ number.result }}</b></mat-label
+              >
+            }
+          </div>
         </div>
-        <div class="input-row">
-          <mat-checkbox [(ngModel)]="number.isFloat">
-            Може бути дробовим
-          </mat-checkbox>
-          @if (showError) {
-          <mat-label>Помилка в обраховуванні</mat-label>
-          } @else if (number.result !== null) {
-          <mat-label>Коефіцієнт: <b>{{ number.result }}</b></mat-label>
-          }
-        </div>
-      </div>
-      <button mat-icon-button (click)="deleteNumber(i)">
-        <mat-icon color="warn">close</mat-icon>
-      </button>
-    </mat-card-content>
-  </mat-card>
+        <button mat-icon-button (click)="deleteNumber(i)">
+          <mat-icon color="warn">close</mat-icon>
+        </button>
+      </mat-card-content>
+    </mat-card>
   }
 </div>

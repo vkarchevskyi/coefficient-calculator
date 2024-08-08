@@ -65,7 +65,7 @@ export class CalculatorComponent {
     const nums = this.numbers.map((numberObj) => numberObj.value);
     const floats = this.numbers.map((numberObj) => numberObj.isFloat);
     const startFrom = this.numbers.map(
-      (numberObj) => numberObj.startSearchFrom
+      (numberObj) => numberObj.startSearchFrom,
     );
 
     const result = this.calculatorService.run(
@@ -74,7 +74,7 @@ export class CalculatorComponent {
       startFrom,
       this.sum,
       this.systemSettings.maxIterations,
-      this.systemSettings.precision
+      this.systemSettings.precision,
     );
 
     if (result) {

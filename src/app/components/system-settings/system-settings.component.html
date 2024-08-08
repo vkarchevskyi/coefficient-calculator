@@ -5,11 +5,17 @@
   <div class="input-row">
     <mat-form-field>
       <mat-label>Точність оцінки</mat-label>
-      <input matInput type="number" [(ngModel)]="precision">
+      <input matInput type="number" [(ngModel)]="precision" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Кількість ітерацій циклу</mat-label>
-      <input matInput type="number" [(ngModel)]="maxIterations">
+      <input matInput type="number" [(ngModel)]="maxIterations" />
     </mat-form-field>
   </div>
+  <mat-checkbox
+    (change)="themeService.toggleTheme()"
+    [checked]="themeService.isDarkTheme"
+  >
+    Темна тема
+  </mat-checkbox>
 </mat-expansion-panel>

@@ -10,7 +10,7 @@ export class CalculatorService {
     starts: number[],
     sum: number,
     maxIterations: number,
-    precision: number
+    precision: number,
   ): number[] | null {
     const limits = numbers.map((number: number) => sum / number);
     const increments = floats.map((float: boolean) => (float ? precision : 1));
@@ -44,11 +44,12 @@ export class CalculatorService {
     numbers: number[],
     currentValues: number[],
     targetSum: number,
-    precision: number
+    precision: number,
   ): boolean {
     const currentSum = numbers.reduce(
-      (acc: number, coeff: number, index: number) => acc + coeff * currentValues[index],
-      0
+      (acc: number, coeff: number, index: number) =>
+        acc + coeff * currentValues[index],
+      0,
     );
     return Math.abs(currentSum - targetSum) < precision;
   }
