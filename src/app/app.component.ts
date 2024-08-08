@@ -9,4 +9,6 @@ import { CalculatorComponent } from './components/calculator/calculator.componen
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent {
+  public readonly title: string = 'Калькулятор коефіцієнтів';
+}

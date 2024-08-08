@@ -14,10 +14,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'coeff-calc' title`, () => {
+  it(`should have the 'Калькулятор коефіцієнтів' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('coeff-calc');
+    expect(app.title).toEqual('Калькулятор коефіцієнтів');
   });
 
   it('should render title', () => {
