@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { SystemSettingsComponent } from '../system-settings/system-settings.component';
 import { CalculatorService } from '../../services/calculation.service';
 import { NumbersComponent } from '../numbers/numbers.component';
